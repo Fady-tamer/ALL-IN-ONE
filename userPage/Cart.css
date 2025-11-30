@@ -1,0 +1,85 @@
+body {
+    font-family: arial, sans-serif;
+    background-color: #f4f7f6;
+    margin: 0;
+    color: #333;
+    line-height: 1.6;
+}
+
+.header {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.headerText {
+    font-size: 26px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #4CAF50;
+}
+
+.navigationBar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+    gap: 15px;
+}
+
+.navigationBarLink {
+    padding: 5px 10px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #4CAF50;
+}
+
+.navigationBarLink:hover {
+    border-radius: 6px;
+    transition: all 0.2s;
+    color: white;
+    background-color: #4CAF50;
+}
+
+.cartCounter {
+    padding: 5px 10px;
+    border-radius: 50%;
+    color: #fff;
+    background-color: #f44336;
+}
+
+.logOut-btn {
+    padding: 5px 10px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 6px;
+    color: white;
+    background-color: #f44336;
+}
+
+.main-container {
+    margin: 40px 20px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    background-color: #ffffff;
+}
+
+.footer {
+    padding: 20px;
+    border: none;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    background-color: #4CAF50;
+}
+
+.footer p {
+    margin: 0;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+}
