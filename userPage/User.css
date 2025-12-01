@@ -163,6 +163,7 @@ body {
 }
 
 .inputGroup input {
+    padding: 0 10px;
     width: 60px;
     border: none;
     border-radius: 15px;

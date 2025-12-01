@@ -69,6 +69,40 @@ body {
     background-color: #ffffff;
 }
 
+.mainContentHeader {
+    text-align: center;
+}
+
+.emptyCart {
+    font-weight: bold;
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    padding: 10px;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+}
+
+thead {
+    background-color: #4CAF50;
+    color: white;
+}
+
+tr {
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 1px solid #ddd;
+}
+
+.remove{
+    color: red;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 .footer {
     padding: 20px;
     border: none;

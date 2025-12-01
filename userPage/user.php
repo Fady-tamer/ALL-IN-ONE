@@ -7,6 +7,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'user') {
 }
 
 $printUsername = htmlspecialchars($_SESSION['username']);
+$cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
 
 $servername = "localhost";
 $username = "root";
@@ -22,36 +23,12 @@ if ($conn->connect_error) {
 $message = '';
 $products = [];
 
-$sql_fetch = "SELECT product_id, name, price, category, image_url, description FROM Products ORDER BY product_id DESC";
+$sql_fetch = "SELECT product_id, name, price, category, image_url, description FROM Products ORDER BY product_id";
 $result_fetch = $conn->query($sql_fetch);
 
 if ($result_fetch) {
     while ($row = $result_fetch->fetch_assoc()) {
         $products[] = $row;
-    }
-} else {
-    $message .= "<div class='error-msg'>Error fetching products: " . $conn->error . "</div>";
-}
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'add_to_cart') {
-
-    $product_id = filter_input(INPUT_POST, 'product_id', FILTER_VALIDATE_INT);
-    $quantity = filter_input(INPUT_POST, 'quantity', FILTER_VALIDATE_INT);
-
-    if ($product_id !== false && $product_id !== null && $quantity > 0) {
-        if (!isset($_SESSION['cart'])) {
-            $_SESSION['cart'] = [];
-        }
-        if (isset($_SESSION['cart'][$product_id])) {
-            $_SESSION['cart'][$product_id] += $quantity;
-        } else {
-            $_SESSION['cart'][$product_id] = $quantity;
-        }
-        header("Location: cart.php?status=added");
-        exit();
-    } else {
-        header("Location: cart.php?error=invalid_input");
-        exit();
     }
 }
 
@@ -66,7 +43,7 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome, <?php echo $printUsername; ?>!</title>
     <link rel="icon" type="image/x-icon" href="../img/icon.ico">
-    <link rel="stylesheet" href="UserPage.css">
+    <link rel="stylesheet" href="User.css">
 </head>
 
 <body>
@@ -76,7 +53,12 @@ $conn->close();
             <a class="navigationBarLink" href="">Home</a>
             <a class="navigationBarLink" href="cart.php">
                 Cart
-                <span class="cartCounter">0</span>
+                <?php if (empty($cart)) {
+                    echo "<span class='cartCounter'>0</span>";
+                } else {
+                    echo "<span class='cartCounter'>" . count($cart) . "</span>";
+                }
+                ?>
             </a>
             <a class="navigationBarLink" href="">About Us</a>
             <a class="logOut-btn" href="logout.php" class="logout">Logout</a>
@@ -129,14 +111,13 @@ $conn->close();
                         <p><?php echo htmlspecialchars($product['description']); ?></p>
                         <p class="product-price">$<?php echo number_format($product['price'], 2); ?></p>
                     </div>
-                    <form class="product-add-to-cart" method="POST" action="user.php">
+                    <form class="product-add-to-cart" method="POST" action="cart.php">
                         <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($product['product_id']); ?>">
-                        <input type="hidden" name="action" value="add_to_cart">
                         <div class="inputGroup">
                             <label for="quantity">Quantity</label>
-                            <input type="number" name="quantity" required>
+                            <input type="number" name="quantity" value="1" required>
                         </div>
-                        <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                        <button name="productSubmit" type="submit" class="add-to-cart-btn">Add to Cart</button>
                     </form>
                 </div>
             <?php endforeach; ?>
