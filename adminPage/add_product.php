@@ -43,7 +43,7 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - Add Product</title>
     <link rel="icon" type="image/x-icon" href="../img/icon.ico">
-    <link rel="stylesheet" href="add_products.css">
+    <link rel="stylesheet" href="add_product.css">
 </head>
 
 <body>

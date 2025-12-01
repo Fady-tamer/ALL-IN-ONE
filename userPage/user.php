@@ -20,7 +20,6 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$message = '';
 $products = [];
 
 $sql_fetch = "SELECT product_id, name, price, category, image_url, description FROM Products ORDER BY product_id";
@@ -43,7 +42,7 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome, <?php echo $printUsername; ?>!</title>
     <link rel="icon" type="image/x-icon" href="../img/icon.ico">
-    <link rel="stylesheet" href="User.css">
+    <link rel="stylesheet" href="user.css">
 </head>
 
 <body>

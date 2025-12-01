@@ -42,7 +42,7 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link rel="icon" type="image/x-icon" href="../img/icon.ico">
-    <link rel="stylesheet" href="AdminPage.css">
+    <link rel="stylesheet" href="admin.css">
 </head>
 
 <body>
